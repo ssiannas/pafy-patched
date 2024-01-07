@@ -46,7 +46,7 @@ class YtdlPafy(BasePafy):
 
         self._title = self._ydl_info['title']
         self._author = self._ydl_info['uploader']
-        self._rating = self._ydl_info['average_rating']
+        # self._rating = self._ydl_info['average_rating']
         self._length = self._ydl_info['duration']
         self._viewcount = self._ydl_info['view_count']
         self._likes = self._ydl_info.get('like_count', 0)
@@ -134,7 +134,7 @@ class YtdlStream(BaseStream):
                  callback=None, meta=False, remux_audio=False):
 
         downloader = youtube_dl.downloader.http.HttpFD(ydl(),
-            {'http_chunk_size': 10485760})
+                                                       {'http_chunk_size': 10485760})
 
         progress_available = ["KB", "MB", "GB"]
         if progress not in progress_available:
@@ -175,7 +175,8 @@ class YtdlStream(BaseStream):
             pass
 
         else:
-            filepath = self.generate_filename(meta=meta, max_length=256 - len('.temp'))
+            filepath = self.generate_filename(
+                meta=meta, max_length=256 - len('.temp'))
 
         infodict = {'url': self.url}
 
